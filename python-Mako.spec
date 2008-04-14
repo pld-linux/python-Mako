@@ -24,7 +24,7 @@ performance.
 
 %description -l pl.UTF-8
 Mako jest biblioteką szablonów napisaną w języku Python. Zapewnia
-przyjazną, nie-XMLową składnię, która jest kompilowana do modułów
+przyjazną, nie XML-ową składnię, która jest kompilowana do modułów
 Pythona dla zwiększenia wydajności.
 
 %prep
