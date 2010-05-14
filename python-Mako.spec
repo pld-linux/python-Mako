@@ -17,12 +17,15 @@ Source0:	http://cheeseshop.python.org/packages/source/M/Mako/%{fname}-%{version}
 URL:		http://www.makotemplates.org/
 %if %{with python2}
 BuildRequires:	python >= 1:2.4
+BuildRequires:	python-devel
 BuildRequires:	python-setuptools
 %pyrequires_eq	python-modules
 %endif
 %if %{with python3}
 BuildRequires:	python3
+BuildRequires:	python3-devel
 BuildRequires:	python3-distribute
+BuildRequires:	python3-modules
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
