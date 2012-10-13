@@ -1,19 +1,19 @@
 # TODO:
 # - examples subpackage
 #
-%bcond_without	python2
-%bcond_without	python3
+%bcond_without	python2	# Python 2.x module
+%bcond_without	python3	# Python 3.x module
 #
 %define		fname	Mako
 Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-%{fname}
-Version:	0.4.1
+Version:	0.7.2
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 Source0:	http://cheeseshop.python.org/packages/source/M/Mako/%{fname}-%{version}.tar.gz
-# Source0-md5:	c69bceb23c832b74075f438408fea118
+# Source0-md5:	e3c0a677aa4216da9e89ef8fa76cbafb
 URL:		http://www.makotemplates.org/
 %if %{with python2}
 BuildRequires:	python >= 1:2.4
@@ -93,11 +93,11 @@ mv $RPM_BUILD_ROOT%{_bindir}/mako-render{,-2}
 	--root=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_bindir}/mako-render{,-3}
-
-%py3_postclean
 %endif
 
-ln -s mako-render-2 $RPM_BUILD_ROOT%{_bindir}/mako-render
+%if %{with python2}
+ln -sf mako-render-2 $RPM_BUILD_ROOT%{_bindir}/mako-render
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc CHANGES PKG-INFO README
+%doc CHANGES LICENSE README.rst
 %attr(755,root,root) %{_bindir}/mako-render
 %attr(755,root,root) %{_bindir}/mako-render-2
 %{py_sitescriptdir}/mako
@@ -116,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python3}
 %files -n python3-%{fname}
 %defattr(644,root,root,755)
-%doc CHANGES PKG-INFO README
+%doc CHANGES LICENSE README.rst
 %attr(755,root,root) %{_bindir}/mako-render-3
 %{py3_sitescriptdir}/mako
 %{py3_sitescriptdir}/%{fname}-%{version}-py*.egg-info
