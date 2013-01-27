@@ -1,19 +1,19 @@
 # TODO:
 # - examples subpackage
 #
-%bcond_without	python2	# Python 2.x module
-%bcond_without	python3	# Python 3.x module
-#
+%bcond_without	python2 # CPython 2.x module
+%bcond_without	python3 # CPython 3.x module
+
 %define		fname	Mako
 Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-%{fname}
-Version:	0.7.2
-Release:	2
+Version:	0.7.3
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 Source0:	http://cheeseshop.python.org/packages/source/M/Mako/%{fname}-%{version}.tar.gz
-# Source0-md5:	e3c0a677aa4216da9e89ef8fa76cbafb
+# Source0-md5:	daf7cc50f997533b573f9b40193139a2
 URL:		http://www.makotemplates.org/
 %if %{with python2}
 BuildRequires:	python >= 1:2.4
