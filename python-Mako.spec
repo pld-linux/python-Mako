@@ -9,7 +9,7 @@ Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-%{fname}
 Version:	0.9.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/M/Mako/%{fname}-%{version}.tar.gz
