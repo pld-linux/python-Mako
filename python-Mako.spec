@@ -8,12 +8,13 @@
 Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-%{fname}
-Version:	0.9.1
-Release:	2
+Version:	1.0.1
+Release:	1
 License:	MIT
 Group:		Libraries/Python
+#Source0Download: https://pypi.python.org/pypi/Mako/
 Source0:	https://pypi.python.org/packages/source/M/Mako/%{fname}-%{version}.tar.gz
-# Source0-md5:	fe3f394ef714776d09ec6133923736a7
+# Source0-md5:	9f0aafd177b039ef67b90ea350497a54
 URL:		http://www.makotemplates.org/
 %if %{with python2}
 BuildRequires:	python >= 1:2.4
@@ -80,7 +81,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_bindir}/mako-render{,-2}
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/mako-render{,-2}
 
 %py_postclean
 %endif
@@ -92,7 +93,7 @@ mv $RPM_BUILD_ROOT%{_bindir}/mako-render{,-2}
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_bindir}/mako-render{,-3}
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/mako-render{,-3}
 %endif
 
 %if %{with python2}
