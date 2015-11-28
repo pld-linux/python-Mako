@@ -63,11 +63,11 @@ Pythona dla zwiększenia wydajności.
 
 %build
 %if %{with python2}
-%{__python} setup.py build -b build-2
+%py_build
 %endif
 
 %if %{with python3}
-%{__python3} setup.py build -b build-3
+%py3_build
 %endif
 
 %install
@@ -75,11 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %if %{with python2}
-%{__python} setup.py \
-	build -b build-2 \
-	install \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py_install
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/mako-render{,-2}
 
@@ -87,11 +83,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %endif
 
 %if %{with python3}
-%{__python3} setup.py \
-	build -b build-3 \
-	install \
-	--optimize=2 \
-	--root=$RPM_BUILD_ROOT
+%py3_install
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/mako-render{,-3}
 %endif
