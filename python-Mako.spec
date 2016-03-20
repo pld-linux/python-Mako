@@ -8,13 +8,13 @@
 Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-%{fname}
-Version:	1.0.3
+Version:	1.0.4
 Release:	1
 License:	MIT
 Group:		Libraries/Python
-#Source0Download: https://pypi.python.org/pypi/Mako/
+#Source0Download: https://pypi.python.org/simple/Mako/
 Source0:	https://pypi.python.org/packages/source/M/Mako/%{fname}-%{version}.tar.gz
-# Source0-md5:	a78f20f6366a8a0659ce5532f8614e53
+# Source0-md5:	c5fc31a323dd4990683d2f2da02d4e20
 URL:		http://www.makotemplates.org/
 %if %{with python2}
 BuildRequires:	python >= 1:2.6
