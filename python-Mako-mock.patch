@@ -1,0 +1,20 @@
+--- Mako-1.0.7/setup.py.orig	2017-07-13 18:12:05.000000000 +0200
++++ Mako-1.0.7/setup.py	2018-06-24 11:10:04.082459984 +0200
+@@ -47,6 +47,8 @@
+         sys.exit(errno)
+ 
+ 
++mock_deps = ["mock"] if sys.version_info < (3, 3) else []
++
+ setup(name='Mako',
+       version=VERSION,
+       description="A super-fast templating language that borrows the \
+@@ -68,7 +70,7 @@
+       url='http://www.makotemplates.org/',
+       license='MIT',
+       packages=find_packages('.', exclude=['examples*', 'test*']),
+-      tests_require=['pytest', 'mock'],
++      tests_require=['pytest'] + mock_deps,
+       cmdclass={'test': PyTest},
+       zip_safe=False,
+       install_requires=install_requires,

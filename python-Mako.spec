@@ -1,34 +1,44 @@
-# TODO:
-# - examples subpackage
 #
+# Conditional build:
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
+%bcond_without	tests	# unit tests
 
 %define		fname	Mako
 Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-%{fname}
-Version:	1.0.4
-Release:	2
+Version:	1.0.7
+Release:	1
 License:	MIT
 Group:		Libraries/Python
-#Source0Download: https://pypi.python.org/simple/Mako/
-Source0:	https://pypi.python.org/packages/source/M/Mako/%{fname}-%{version}.tar.gz
-# Source0-md5:	c5fc31a323dd4990683d2f2da02d4e20
+#Source0Download: https://pypi.org/simple/mako/
+Source0:	https://files.pythonhosted.org/packages/source/M/Mako/%{fname}-%{version}.tar.gz
+# Source0-md5:	5836cc997b1b773ef389bf6629c30e65
+Patch0:		%{name}-mock.patch
 URL:		http://www.makotemplates.org/
 %if %{with python2}
 BuildRequires:	python >= 1:2.6
 BuildRequires:	python-devel >= 1:2.6
 BuildRequires:	python-setuptools
+%if %{with tests}
+BuildRequires:	python-markupsafe >= 0.9.2
+BuildRequires:	python-mock
+BuildRequires:	python-pytest
+%endif
 %endif
 %if %{with python3}
 BuildRequires:	python3 >= 1:3.3
 BuildRequires:	python3-devel >= 1:3.3
 BuildRequires:	python3-modules >= 1:3.3
 BuildRequires:	python3-setuptools
+%if %{with tests}
+BuildRequires:	python3-markupsafe >= 0.9.2
+BuildRequires:	python3-pytest
+%endif
 %endif
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	python-modules >= 1:2.6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,16 +69,28 @@ Mako jest biblioteką szablonów napisaną w języku Python. Zapewnia
 przyjazną, nie XML-ową składnię, która jest kompilowana do modułów
 Pythona dla zwiększenia wydajności.
 
+%package doc
+Summary:	Documentation for Python Mako module
+Summary(pl.UTF-8):	Dokumentacja do modułu Pythona Mako
+Group:		Documentation
+
+%description doc
+Documentation for Python Mako module.
+
+%description doc -l pl.UTF-8
+Dokumentacja do modułu Pythona Mako.
+
 %prep
 %setup -qn %{fname}-%{version}
+%patch0 -p1
 
 %build
 %if %{with python2}
-%py_build
+%py_build %{?with_tests:test}
 %endif
 
 %if %{with python3}
-%py3_build
+%py3_build %{?with_tests:test}
 %endif
 
 %install
@@ -115,3 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py3_sitescriptdir}/mako
 %{py3_sitescriptdir}/%{fname}-%{version}-py*.egg-info
 %endif
+
+%files doc
+%defattr(644,root,root,755)
+%doc doc/{_static,*.html,*.js}
