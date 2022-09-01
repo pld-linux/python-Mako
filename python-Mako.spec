@@ -9,6 +9,7 @@
 Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-Mako
+# keep 1.1.x here for python2 support
 Version:	1.1.6
 Release:	4
 License:	MIT
@@ -92,6 +93,7 @@ Dokumentacja do modułu Pythona Mako.
 %py_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python} -m pytest test
 %endif
 %endif
@@ -100,6 +102,7 @@ Dokumentacja do modułu Pythona Mako.
 %py3_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python3} -m pytest test
 %endif
 %endif
