@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-Mako
 # keep 1.1.x here for python2 support
 Version:	1.1.6
-Release:	5
+Release:	6
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/mako/
