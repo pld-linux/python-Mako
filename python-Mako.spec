@@ -21,6 +21,8 @@ URL:		https://www.makotemplates.org/
 %if %{with python2}
 BuildRequires:	python >= 1:2.7
 BuildRequires:	python-devel >= 1:2.7
+# import timeit
+BuildRequires:	python-devel-tools >= 1:2.7
 BuildRequires:	python-setuptools
 %if %{with tests}
 BuildRequires:	python-babel
@@ -33,6 +35,8 @@ BuildRequires:	python-pytest >= 3.1.0
 %if %{with python3}
 BuildRequires:	python3 >= 1:3.4
 BuildRequires:	python3-devel >= 1:3.4
+# import timeit
+BuildRequires:	python3-devel-tools >= 1:3.4
 BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	python3-setuptools
 %if %{with tests}
