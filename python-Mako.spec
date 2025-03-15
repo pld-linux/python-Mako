@@ -2,7 +2,7 @@
 #
 # Conditional build:
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-Mako.spec)
 %bcond_without	tests	# unit tests
 
 %define		fname	Mako
@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	System szablonów dla języka Python
 Name:		python-Mako
 # keep 1.1.x here for python2 support
 Version:	1.1.6
-Release:	6
+Release:	7
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/mako/
@@ -67,6 +67,7 @@ Summary:	Templating system for Python
 Summary(pl.UTF-8):	System szablonów dla języka Python
 Group:		Libraries/Python
 Requires:	python3-modules >= 1:3.3
+Conflicts:	python-Mako < 1.1.6-7
 
 %description -n python3-Mako
 Mako is a template library written in Python. It provides a familiar,
@@ -127,10 +128,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 %py3_install
 
 %{__mv} $RPM_BUILD_ROOT%{_bindir}/mako-render{,-3}
-%endif
-
-%if %{with python2}
-ln -sf mako-render-2 $RPM_BUILD_ROOT%{_bindir}/mako-render
+ln -sf mako-render-3 $RPM_BUILD_ROOT%{_bindir}/mako-render
 %endif
 
 %clean
@@ -140,7 +138,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS CHANGES LICENSE README.rst
-%attr(755,root,root) %{_bindir}/mako-render
 %attr(755,root,root) %{_bindir}/mako-render-2
 %{py_sitescriptdir}/mako
 %{py_sitescriptdir}/Mako-%{version}-py*.egg-info
@@ -151,6 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n python3-Mako
 %defattr(644,root,root,755)
 %doc CHANGES LICENSE README.rst
+%attr(755,root,root) %{_bindir}/mako-render
 %attr(755,root,root) %{_bindir}/mako-render-3
 %{py3_sitescriptdir}/mako
 %{py3_sitescriptdir}/Mako-%{version}-py*.egg-info
